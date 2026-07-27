@@ -141,4 +141,4 @@ while True:
 
     else:
 
-        print("\nInvalid menu selection. Please choose 1-4.")
+        print("\nInvalid menu selection. Please choose an option from 1-4.")
