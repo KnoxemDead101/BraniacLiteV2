@@ -1,4 +1,5 @@
 from pathlib import Path
+from menu import display_menu, get_user_choice
 # ==========================================================
 # TroubleLog v0.1
 # KTT Homelab Project
@@ -6,16 +7,8 @@ from pathlib import Path
 
 while True:
 
-    print("\n===================================")
-    print("          TroubleLog v0.1")
-    print("===================================")
-    print("1. Create Service Log")
-    print("2. Read Service Log")
-    print("3. Update Service Log")
-    print("4. Exit")
-
-    choice = input("\nSelect an option: ").strip()
-
+    display_menu()
+    choice = get_user_choice()
     # ======================================================
     # CREATE SERVICE LOG
     # ======================================================
