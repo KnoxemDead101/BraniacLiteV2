@@ -2,7 +2,6 @@ from pathlib import Path
 from menu import display_menu, get_user_choice
 from datetime import datetime 
 
-
 # ==========================================================
 # TroubleLog v0.2
 # KTT Homelab Project
@@ -15,7 +14,6 @@ LOGS_DIRECTORY = PROJECT_DIRECTORY / "logs"
 created_timestamp = datetime.now().strftime("%Y-%m-%d_%I-%M-%S")
 last_updated_timestamp = datetime.now().strftime("%Y-%m-%d %I:%M:%S")
 exact_time = datetime.now().time()
-
 
 def directory_info():
     print(f"Source Directory: {SOURCE_DIRECTORY}")
@@ -99,28 +97,32 @@ while True:
 
     elif choice == "2":
 
-        machine = input("Enter Machine Name: ").strip().lower()
-        log_number = input("Enter Service Log Number: ").strip()
+        while True:
+            machine = input("Enter Machine Name: ").strip().lower()
+            log_number = input("Enter Service Log Number: ").strip()
 
-        machine_folder = LOGS_DIRECTORY / machine
-        filename = f"service-log-{log_number}.md"
-        file_path = machine_folder / filename
+            machine_folder = LOGS_DIRECTORY / machine
+            filename = f"service-log-{log_number}.md"
+            file_path = machine_folder / filename
 
-        if file_path.exists():
+            if file_path.exists():
 
-            with open(file_path, "r", encoding="utf-8") as log_file:
-                contents = log_file.read()
+                with open(file_path, "r", encoding="utf-8") as log_file:
+                    contents = log_file.read()
 
-            print("\n===================================")
-            print(contents)
-            print("===================================")
+                print("\n===================================")
+                print(contents)
+                print("===================================")
 
-        else:
+                break  # Exit the loop after successfully reading the log
 
-            print(
-                f"\nService Log {log_number} was not found "
-                f"for machine {machine} on {created_timestamp} and was last updated on {last_updated_timestamp}."
-            )
+            else:
+
+                print(
+                    f"\nService Log {log_number} was not found "
+                    f"for machine {machine} on {created_timestamp} and was last updated on {last_updated_timestamp}."
+                    f"\nPlease check the machine name and log number, and try again."
+                )
 
     # ======================================================
     # UPDATE SERVICE LOG
