@@ -1,6 +1,6 @@
 from pathlib import Path
-
 from menu import display_menu, get_user_choice
+from datetime import datetime 
 
 
 # ==========================================================
@@ -12,10 +12,17 @@ SOURCE_DIRECTORY = Path(__file__).resolve().parent
 PROJECT_DIRECTORY = SOURCE_DIRECTORY.parent
 LOGS_DIRECTORY = PROJECT_DIRECTORY / "logs"
 
-print(f"Current File: {__file__}")
-print(f"Project Directory: {PROJECT_DIRECTORY}")
-print(f"Logs Directory: {LOGS_DIRECTORY}")
 
+def directory_info():
+    print(f"Source Directory: {SOURCE_DIRECTORY}")
+    print(f"Project Directory: {PROJECT_DIRECTORY}")
+    print(f"Logs Directory: {LOGS_DIRECTORY}")
+
+directory_info()
+#time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+start_time = datetime.now().time()
+#print(f"TroubleLog started at {time}")
+print(start_time)
 while True:
 
     display_menu()
@@ -30,6 +37,8 @@ while True:
         machine = input("Enter Machine Name: ").strip().lower()
         log_number = input("Enter Service Log Number: ").strip()
 
+        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+
         machine_folder = LOGS_DIRECTORY / machine
         machine_folder.mkdir(parents=True, exist_ok=True)
 
@@ -39,8 +48,7 @@ while True:
         if file_path.exists():
 
             print(
-                f"\nService Log {log_number} already exists for machine "
-                f"{machine}. Please choose a different log number."
+                f"\nService Log {log_number} already exists for machine {machine} and was created on {timestamp}. Please choose a different log number."
             )
 
         else:
@@ -66,6 +74,10 @@ while True:
 ## Summary
 
 {summary}
+
+## Last Updated
+{timestamp}
+
 """
 
             with open(file_path, "w", encoding="utf-8") as log_file:
@@ -73,7 +85,7 @@ while True:
 
             print(
                 f"\nService Log {log_number} created successfully "
-                f"for machine {machine}."
+                f"for machine {machine} on {timestamp}."
             )
 
     # ======================================================
@@ -102,7 +114,7 @@ while True:
 
             print(
                 f"\nService Log {log_number} was not found "
-                f"for machine {machine}."
+                f"for machine {machine} on {timestamp}."
             )
 
     # ======================================================
@@ -144,14 +156,14 @@ while True:
 
             print(
                 f"\nService Log {log_number} updated successfully "
-                f"for machine {machine}."
+                f"for machine {machine} on {timestamp}."
             )
 
         else:
 
             print(
                 f"\nService Log {log_number} was not found "
-                f"for machine {machine}."
+                f"for machine {machine} on {timestamp}."
             )
 
     # ======================================================
