@@ -12,17 +12,21 @@ SOURCE_DIRECTORY = Path(__file__).resolve().parent
 PROJECT_DIRECTORY = SOURCE_DIRECTORY.parent
 LOGS_DIRECTORY = PROJECT_DIRECTORY / "logs"
 
+created_timestamp = datetime.now().strftime("%Y-%m-%d_%I-%M-%S")
+last_updated_timestamp = datetime.now().strftime("%Y-%m-%d %I:%M:%S")
+exact_time = datetime.now().time()
+
 
 def directory_info():
     print(f"Source Directory: {SOURCE_DIRECTORY}")
     print(f"Project Directory: {PROJECT_DIRECTORY}")
     print(f"Logs Directory: {LOGS_DIRECTORY}")
+    print(f"Created Timestamp: {created_timestamp}")
 
 directory_info()
-#time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 start_time = datetime.now().time()
-#print(f"TroubleLog started at {time}")
-print(start_time)
+print(f"TroubleLog started at {start_time}")
+
 while True:
 
     display_menu()
@@ -37,8 +41,6 @@ while True:
         machine = input("Enter Machine Name: ").strip().lower()
         log_number = input("Enter Service Log Number: ").strip()
 
-        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-
         machine_folder = LOGS_DIRECTORY / machine
         machine_folder.mkdir(parents=True, exist_ok=True)
 
@@ -48,7 +50,7 @@ while True:
         if file_path.exists():
 
             print(
-                f"\nService Log {log_number} already exists for machine {machine} and was created on {timestamp}. Please choose a different log number."
+                f"\nService Log {log_number} already exists for machine {machine} and was created on {created_timestamp} and was last updated on {last_updated_timestamp}. Please choose a different log number."
             )
 
         else:
@@ -56,7 +58,7 @@ while True:
             title = input("Title: ").strip()
             status = input("Status: ").strip()
             summary = input("Summary: ").strip()
-
+            timestamp = datetime.now().strftime("%Y-%m-%d %I:%M:%S")
             log_content = f"""# Service Log {log_number}
 
 ## Machine
@@ -67,6 +69,9 @@ while True:
 
 {title}
 
+## Created
+{created_timestamp}
+
 ## Status
 
 {status}
@@ -76,7 +81,7 @@ while True:
 {summary}
 
 ## Last Updated
-{timestamp}
+{last_updated_timestamp}
 
 """
 
@@ -85,7 +90,7 @@ while True:
 
             print(
                 f"\nService Log {log_number} created successfully "
-                f"for machine {machine} on {timestamp}."
+                f"for machine {machine} on {created_timestamp}."
             )
 
     # ======================================================
@@ -114,7 +119,7 @@ while True:
 
             print(
                 f"\nService Log {log_number} was not found "
-                f"for machine {machine} on {timestamp}."
+                f"for machine {machine} on {created_timestamp} and was last updated on {last_updated_timestamp}."
             )
 
     # ======================================================
@@ -125,6 +130,8 @@ while True:
 
         machine = input("Enter Machine Name: ").strip().lower()
         log_number = input("Enter Service Log Number: ").strip()
+
+        last_updated_timestamp = datetime.now().strftime("%Y-%m-%d %I:%M:%S")
 
         machine_folder = LOGS_DIRECTORY / machine
         filename = f"service-log-{log_number}.md"
@@ -145,6 +152,9 @@ while True:
 
 {update_status}
 
+**Time Updated Last**
+{last_updated_timestamp}
+
 ### Notes
 
 {update_notes}
@@ -156,14 +166,14 @@ while True:
 
             print(
                 f"\nService Log {log_number} updated successfully "
-                f"for machine {machine} on {timestamp}."
+                f"for machine {machine} on {last_updated_timestamp}."
             )
 
         else:
 
             print(
                 f"\nService Log {log_number} was not found "
-                f"for machine {machine} on {timestamp}."
+                f"for machine {machine} on {created_timestamp} and was last updated on {last_updated_timestamp}."
             )
 
     # ======================================================
@@ -173,6 +183,7 @@ while True:
     elif choice == "4":
 
         print("\nClosing TroubleLog...")
+        print(f"TroubleLog closed at {last_updated_timestamp}.")
         break
 
     # ======================================================
