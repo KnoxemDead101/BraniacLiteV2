@@ -129,3 +129,47 @@ while True:
 
 ## Service Log Update
 
+**Updated Status**
+
+{update_status}
+
+### Notes
+
+{update_notes}
+
+"""
+
+            with open(file_path, "a", encoding="utf-8") as log_file:
+                log_file.write(update_content)
+
+            print(
+                f"\nService Log {log_number} updated successfully "
+                f"for machine {machine}."
+            )
+
+        else:
+
+            print(
+                f"\nService Log {log_number} was not found "
+                f"for machine {machine}."
+            )
+
+    # ======================================================
+    # EXIT
+    # ======================================================
+
+    elif choice == "4":
+
+        print("\nClosing TroubleLog...")
+        break
+
+    # ======================================================
+    # INVALID MENU CHOICE
+    # ======================================================
+
+    else:
+
+        print(
+            "\nInvalid menu selection. "
+            "Please choose an option from 1-4."
+        )
