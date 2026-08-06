@@ -1,153 +1,144 @@
-# Brainiac Lite
+# TroubleLog
 
-**Brainiac Lite** is a standalone Python trading journal and analytics application designed to help traders record, review, and analyze their trades while serving as a practical software development project.
+## Overview
 
-This project has two primary goals:
+TroubleLog is a lightweight Python command-line application designed to document and organize homelab maintenance, troubleshooting, and system administration tasks.
 
-1. Build a lightweight, reliable trading journal that can be used every day.
-2. Develop strong Python programming and software engineering skills that will directly transfer to the full Java version of **Brainiac**.
+Originally developed as a learning project, TroubleLog has grown into a practical utility for recording service history across multiple computers and servers. It serves as both a documentation tool and a way to strengthen Python programming skills.
 
----
-
-# Project Philosophy
-
-Brainiac Lite is more than a practice project.
-
-It is a complete application designed to grow alongside my programming abilities.
-
-Every feature added to Brainiac Lite is intended to teach core software development concepts such as:
-
-* Object-Oriented Programming
-* Modular Design
-* File Management
-* Data Validation
-* Error Handling
-* Software Architecture
-* Git Version Control
-* Linux Development
-* Documentation
-* Testing
-
-The long-term goal is to become a stronger software engineer while creating software that is genuinely useful.
+The primary goal of TroubleLog is to maintain a searchable history of system changes while reinforcing software development fundamentals such as file handling, modular programming, version control, and project organization.
 
 ---
 
-# Relationship to Brainiac
+## Project Goals
 
-Brainiac Lite is the Python edition of the Brainiac ecosystem.
+* Learn Python through a real-world application.
+* Document Linux and Windows system administration tasks.
+* Maintain organized service logs for multiple machines.
+* Practice Git and professional software development workflows.
+* Build a portfolio-quality command-line application.
 
-It is designed to operate completely on its own while also serving as the foundation for the future Java version.
+---
+
+## Current Features
+
+* Create new service logs
+* Read existing service logs
+* Update existing service logs
+* Multi-machine support
+* Automatic machine directory creation
+* Markdown-based service logs
+* Simple command-line interface
+
+---
+
+## Project Structure
 
 ```text
-Brainiac Lite (Python)
-        │
-        ▼
-Shared Trade Data Format
-        │
-        ▼
-Brainiac (Java)
+TroubleLog/
+├── logs/
+│   ├── friday/
+│   ├── windows-pc/
+│   └── macbook/
+│
+├── src/
+│   ├── main.py
+│   └── menu.py
+│
+├── README.md
+├── CHANGELOG.md
+└── .gitignore
 ```
 
-The Java application will eventually provide:
+---
 
-* Advanced analytics
-* Portfolio management
-* Desktop interface
-* Database integration
-* Rich reporting
-* Expanded functionality
+## Service Log Format
 
-Brainiac Lite remains fully functional regardless of whether the Java application exists.
+Each service log is stored as a Markdown document.
+
+Example:
+
+```markdown
+# Service Log 001
+
+## Machine
+
+Friday
+
+## Title
+
+Installed OpenSSH Server
+
+## Status
+
+Resolved
+
+## Summary
+
+Installed and configured OpenSSH Server for remote administration.
+```
 
 ---
 
-# Current Goals
+## Current Version
 
-Version 1 focuses on building a reliable command-line trading journal capable of:
+**v0.2**
 
-* Logging trades
-* Viewing trade history
-* Editing trades
-* Deleting trades
-* Searching trades
-* Filtering trades
-* Calculating profit and loss
-* Calculating R-Multiple
-* Displaying trading statistics
-* Importing and exporting CSV files
+Current functionality includes:
 
-Future versions may introduce SQLite support while maintaining compatibility with the Java application.
+* Create Service Log
+* Read Service Log
+* Update Service Log
+* Multi-machine support
 
 ---
 
-# Technologies
+## Planned Features
+
+### v0.3
+
+* Automatic timestamps
+* Delete service logs
+* Search logs
+* Improved log formatting
+
+### v0.4
+
+* Log categories
+* Service history reports
+* Log statistics
+
+### v1.0
+
+* Stable command-line release
+* Complete documentation
+* Cross-platform support
+* Production-ready project structure
+
+---
+
+## Technologies
 
 * Python 3
-* CSV
-* SQLite (future)
+* pathlib
+* Markdown
 * Git
-* GitHub
-* Linux (Kubuntu)
 * Visual Studio Code
 
-This project intentionally begins with the Python Standard Library whenever possible before introducing third-party packages.
+---
+
+## Purpose
+
+TroubleLog is one component of the KTT Software Ecosystem.
+
+It is intended to operate as a standalone application while serving as a learning platform for Python, Linux administration, and software engineering principles.
 
 ---
 
-# Learning Objectives
+## Author
 
-Brainiac Lite is being developed to strengthen skills in:
+**Leighton Knox**
 
-* Python programming
-* Object-oriented design
-* Problem solving
-* Data structures
-* File handling
-* Software architecture
-* Linux command line
-* Git workflow
-* Documentation
-* Software testing
+KTT Software Development
 
-Each version of the project is intended to demonstrate measurable improvement in programming knowledge and development practices.
-
----
-
-# Development Philosophy
-
-The project follows an incremental development process.
-
-Every version should be stable, documented, and functional before new features are introduced.
-
-Example roadmap:
-
-* v0.1 — Project setup
-* v0.2 — Trade logging
-* v0.3 — Trade management
-* v0.4 — Performance analytics
-* v0.5 — Data persistence improvements
-* v1.0 — Stable standalone release
-
----
-
-# Future Vision
-
-Brainiac Lite is the beginning of a larger software ecosystem.
-
-The long-term vision includes:
-
-* Brainiac (Java)
-* Cerebro
-* Additional financial and productivity tools
-
-Each application will have a specific purpose while sharing common design principles and compatible data formats.
-
----
-
-# License
-
-This project is intended for educational and personal development purposes.
-
----
-
-*"Great software is built one version at a time."*
+Built to document systems, strengthen programming skills, and support continuous learning through real-world projects.
