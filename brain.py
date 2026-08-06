@@ -14,16 +14,21 @@ while True:
     # ======================================================
 
     if choice == "1":
+        machine = input("Enter Machine Name: ").strip().lower()
+
+        machine_folder = Path(f"../logs/{machine}")
+
+        machine_folder.mkdir(parents=True, exist_ok=True)
 
         log_number = input("Enter Service Log Number: ").strip()
 
         filename = "service-log-" + log_number + ".md"
 
-        file_path = "../logs/" + filename
+        file_path = machine_folder / filename
 
         if Path(file_path).exists():
 
-            print(f"\nService Log {log_number} already exists.")
+            print(f"\nService Log {log_number} already exists " f"for machine {machine}. Please choose a different log number.")
 
         else:
 
@@ -32,6 +37,10 @@ while True:
             summary = input("Summary: ").strip()
 
             log_content = f"""# Service Log {log_number}
+
+## Machine: 
+
+{machine}
 
 ## Title
 
@@ -49,7 +58,7 @@ while True:
             with open(file_path, "w", encoding="utf-8") as log_file:
                 log_file.write(log_content)
 
-            print(f"\nService Log {log_number} created successfully.")
+            print(f"\nService Log {log_number} created successfully for machine {machine}.")
 
     # ======================================================
     # READ SERVICE LOG
@@ -57,11 +66,14 @@ while True:
 
     elif choice == "2":
 
+        machine = input("Enter Machine Name: ").strip().lower()
+
         log_number = input("Enter Service Log Number: ").strip()
 
         filename = "service-log-" + log_number + ".md"
 
-        file_path = "../logs/" + filename
+        machine_folder = Path(f"../logs/{machine}")
+        file_path = machine_folder / filename
 
         if Path(file_path).exists():
 
@@ -75,7 +87,7 @@ while True:
 
         else:
 
-            print(f"\nService Log {log_number} was not found.")
+            print(f"\nService Log {log_number} was not found for machine {machine}.")
 
     # ======================================================
     # UPDATE SERVICE LOG
@@ -87,7 +99,9 @@ while True:
 
         filename = "service-log-" + log_number + ".md"
 
-        file_path = "../logs/" + filename
+        machine = input("Enter Machine Name: ").strip().lower()
+        machine_folder = Path(f"../logs/{machine}")
+        file_path = machine_folder / filename
 
         if Path(file_path).exists():
 
@@ -113,11 +127,11 @@ while True:
             with open(file_path, "a", encoding="utf-8") as log_file:
                 log_file.write(update_content)
 
-            print(f"\nService Log {log_number} updated successfully.")
+            print(f"\nService Log {log_number} updated successfully for machine {machine}.")
 
         else:
 
-            print(f"\nService Log {log_number} was not found.")
+            print(f"\nService Log {log_number} was not found for machine {machine}.")
 
     # ======================================================
     # EXIT
