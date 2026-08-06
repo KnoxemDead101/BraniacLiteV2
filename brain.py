@@ -1,5 +1,7 @@
 from pathlib import Path
 from menu import display_menu, get_user_choice
+
+
 # ==========================================================
 # TroubleLog v0.1
 # KTT Homelab Project
@@ -9,26 +11,29 @@ while True:
 
     display_menu()
     choice = get_user_choice()
+
     # ======================================================
     # CREATE SERVICE LOG
     # ======================================================
 
     if choice == "1":
+
         machine = input("Enter Machine Name: ").strip().lower()
 
-        machine_folder = Path(f"../logs/{machine}")
-
+        machine_folder = Path("../logs") / machine
         machine_folder.mkdir(parents=True, exist_ok=True)
 
         log_number = input("Enter Service Log Number: ").strip()
 
         filename = "service-log-" + log_number + ".md"
-
         file_path = machine_folder / filename
 
-        if Path(file_path).exists():
+        if file_path.exists():
 
-            print(f"\nService Log {log_number} already exists " f"for machine {machine}. Please choose a different log number.")
+            print(
+                f"\nService Log {log_number} already exists for machine "
+                f"{machine}. Please choose a different log number."
+            )
 
         else:
 
@@ -38,7 +43,7 @@ while True:
 
             log_content = f"""# Service Log {log_number}
 
-## Machine: 
+## Machine
 
 {machine}
 
@@ -58,7 +63,10 @@ while True:
             with open(file_path, "w", encoding="utf-8") as log_file:
                 log_file.write(log_content)
 
-            print(f"\nService Log {log_number} created successfully for machine {machine}.")
+            print(
+                f"\nService Log {log_number} created successfully "
+                f"for machine {machine}."
+            )
 
     # ======================================================
     # READ SERVICE LOG
@@ -67,18 +75,16 @@ while True:
     elif choice == "2":
 
         machine = input("Enter Machine Name: ").strip().lower()
-
         log_number = input("Enter Service Log Number: ").strip()
 
-        filename = "service-log-" + log_number + ".md"
+        machine_folder = Path("../logs") / machine
 
-        machine_folder = Path(f"../logs/{machine}")
+        filename = "service-log-" + log_number + ".md"
         file_path = machine_folder / filename
 
-        if Path(file_path).exists():
+        if file_path.exists():
 
             with open(file_path, "r", encoding="utf-8") as log_file:
-
                 contents = log_file.read()
 
             print("\n===================================")
@@ -87,7 +93,10 @@ while True:
 
         else:
 
-            print(f"\nService Log {log_number} was not found for machine {machine}.")
+            print(
+                f"\nService Log {log_number} was not found "
+                f"for machine {machine}."
+            )
 
     # ======================================================
     # UPDATE SERVICE LOG
@@ -95,15 +104,15 @@ while True:
 
     elif choice == "3":
 
+        machine = input("Enter Machine Name: ").strip().lower()
         log_number = input("Enter Service Log Number: ").strip()
 
-        filename = "service-log-" + log_number + ".md"
+        machine_folder = Path("../logs") / machine
 
-        machine = input("Enter Machine Name: ").strip().lower()
-        machine_folder = Path(f"../logs/{machine}")
+        filename = "service-log-" + log_number + ".md"
         file_path = machine_folder / filename
 
-        if Path(file_path).exists():
+        if file_path.exists():
 
             update_status = input("Updated Status: ").strip()
             update_notes = input("Update Notes: ").strip()
@@ -127,11 +136,17 @@ while True:
             with open(file_path, "a", encoding="utf-8") as log_file:
                 log_file.write(update_content)
 
-            print(f"\nService Log {log_number} updated successfully for machine {machine}.")
+            print(
+                f"\nService Log {log_number} updated successfully "
+                f"for machine {machine}."
+            )
 
         else:
 
-            print(f"\nService Log {log_number} was not found for machine {machine}.")
+            print(
+                f"\nService Log {log_number} was not found "
+                f"for machine {machine}."
+            )
 
     # ======================================================
     # EXIT
@@ -148,4 +163,7 @@ while True:
 
     else:
 
-        print("\nInvalid menu selection. Please choose an option from 1-4.")
+        print(
+            "\nInvalid menu selection. "
+            "Please choose an option from 1-4."
+        )
